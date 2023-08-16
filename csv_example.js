@@ -1,5 +1,6 @@
 const { Client } = require('pg')
 const ObjectsToCsv = require('objects-to-csv');
+const fs = require("fs")
 const client = new Client({
     host: "pgadmin.jvh.kfs.es", port:
         5433, database:'postgres', user: 'lector', password: 'lector',})
@@ -13,4 +14,5 @@ const data = res.rows.map(row => ({
 }))
 const csv = new ObjectsToCsv(data); await csv.toDisk('./orders.csv');
 await client.end()
+fs.writeFileSync("./orders.json", JSON)
 }
